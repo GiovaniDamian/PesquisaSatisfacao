@@ -1,0 +1,37 @@
+﻿@model PesquisaSatisfacao.Models.PesquisaModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="vistModal">
+    <div class="modal-dialog modal-lg pb-0 h-75" id="vistModalDialog">
+        
+    </div>
+</div>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about Giovani Damian <a href="https://www.linkedin.com/in/giovanidamian/">Linkedin</a>.</p>
+    <p>My github <a href="https://github.com/GiovaniDamian">Github</a>.</p>
+</div>
+
+
+<script>
+    window.onload = function bindsPesquisaSatisfacao() {
+        var dados = $(this).data()
+        $.ajax({
+            url: '@Url.Action("PesquisaSatisfacao", "Home")',
+            type: 'GET',
+            data: { dados },
+            success: function (result) {
+                if(result){
+                    $("#vistModalDialog").html(result);
+                    $("#vistModal").modal('show');
+                }
+            },
+            error: function (result){
+                alerta('Tivemos um problema inesperado, se persistir favor comunicar nossa central de suporte');
+            }
+        })
+    }
+</script>
