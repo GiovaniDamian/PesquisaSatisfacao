@@ -17,3 +17,9 @@ IEL: https://ielsc.org.br
   <img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_1.png"/>
 </div>
  
+
+Company request for second layout option
+<div>
+  <h2>Pop-up in Home Page #02</h2>
+  <img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_2.png"/>
+</div>
