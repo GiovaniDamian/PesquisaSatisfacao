@@ -36,4 +36,5 @@ Company request for second layout option. Image provided by marketing.
 </div>
 
 Table created in the database
-<img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_5.png"/>
+</br>
+<img height="130em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_5.png"/>
