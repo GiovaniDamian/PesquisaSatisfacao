@@ -1,0 +1,101 @@
+<div class="inside-content">
+    <div class="modal-header p-0 mt-5 ml-4" id="vistModalHeader">
+        <div>
+            <div></div>
+            <div class="d-flex flex-column border-bottom">
+                <div class="modal-tittle text-primary p-3"><strong>@ViewData["usuario"]<br /> a Multilog gostaria de saber sua opini&atilde;o:</strong> </div>
+            </div>
+        </div>
+        <button type="button" class="close m-3 p-3 align-items-start text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body row mt-20 m-2 p-2 h-50" id="vistModalBody">
+        <div class="body-form form-place p-2 m-2 col-8 align-content-sm-start align-baseline h-75">
+            <form id="pesquisa" class="d-flex flex-column justify-content-between">
+                <div class="text-white justify-content-between mt-10">
+                    <div class="justify-content-between mt-5">
+                        <div class="m-1" aria-label="button group">
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notazero" onclick="teste(this, 0)">0</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notaum " onclick="teste(this, 1)">1</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notadois " onclick="teste(this, 2)">2</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notatres" onclick="teste(this, 3)">3</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notaquatro" onclick="teste(this, 4)">4</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notacinco" onclick="teste(this, 5)">5</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notaseis" onclick="teste(this, 6)">6</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notasete" onclick="teste(this, 7)">7</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notaoito" onclick="teste(this, 8)">8</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notanove" onclick="teste(this, 9)">9</button>
+                            <button type="button" class="btn-pesquisa m-1 btn-sm-pesquisa btn-notadez" onclick="teste(this, 10)">10</button>
+                        </div>
+                    </div>
+                    <div class=" justify-content-start my-10 h5 text-white">
+                        De 0 a 10, qual o seu n&iacute;vel de satisfa&ccedil;&atilde;o com o atendimento prestado?
+                    </div>
+                </div>
+                <!-- Message input -->
+                <div class="form-outline pesquisa bg-opacity-50 w-100" id="textArea">
+                    <textarea class="form-control border-" id="feedback" placeholder="Em poucas palavras, descreva o que motivou sua nota(opcional)" rows="4"></textarea>
+                </div>
+                <div class="text-end d-flex flex-row-reverse mt-15">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="validarnota()">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+<script>
+    var nota = -1;
+    function teste(element, avaliacao) {
+        $('button').removeClass('btn-border-box');
+        element.classList.toggle('btn-border-box');
+        nota = avaliacao;
+    };
+
+    function validarnota() {
+        if (nota != -1) {
+            pesquisa()
+        } else {
+            alerta('N&atilde;o foi atribuido nota a sua pesquisa, favor selecionar');
+        }
+    }
+
+    $('#feedback').keydown(function (event) {
+        if (event.ctrlKey && event.keyCode === 13) {
+            validarnota();
+        }
+
+        var text = $('#feedback').val();
+        let textReplace = text.replace(/([<>"'%()&+\\\/])/g, '');
+        $('#feedback').val(textReplace);
+    })
+
+    function pesquisa() {
+        var texto = $('#feedback').val();
+        var usuario = '@ViewData["usuario"]';
+        var datarealizada = '@ViewData["data"]';
+        $.ajax({
+            url: Rotas.IncluirPesquisaNoBanco,
+            type: 'POST',
+            data: {
+                texto: texto,
+                nota: nota,
+                usuario: usuario,
+                datarealizada: datarealizada,
+            },
+            success: function (result) {
+                if (result == 'False') {
+                    alerta('Algo deu errado ao computar sua avalia&ccedil;&atilde;o, em breve ser&aacute; solicitado novamente')
+                }
+                if (result == "True") {
+                    $('#vistModal').modal('hide');
+                    alerta('A Multilog agradece sua participa&ccedil;&atilde;o!')
+                }
+            },
+            error: function (result) {
+                alerta('Tivemos um problema inesperado, se persistir favor comunicar nossa central de suporte');
+            }
+        });
+    }
+</script>
