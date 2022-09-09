@@ -12,8 +12,11 @@ Satisfaction Survey for the Multilog company
 Multilog: https://site.multilog.com.br </br>
 IEL: https://ielsc.org.br
 
+<h1>Proposal</h1>
+<img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_4.png"/>
+
 <div>
-  <h2>Pop-up in Home Page</h2>
+  <h2>Pop-up in Home Page #01</h2>
   <img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_1.png"/>
 </div>
  <h1></h1>
@@ -23,3 +26,14 @@ Company request for second layout option. Image provided by marketing.
   <h2>Pop-up in Home Page #02</h2>
   <img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_2.png"/>
 </div>
+
+
+<div>
+  <h2>Final Delivery - Project completed</h2>
+  The company requested last background image, regex validation and user limit of three attempts.Finished layout:
+  </br>
+  <img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_3.png"/>
+</div>
+
+Table created in the database
+<img height="360em" src="https://github.com/GiovaniDamian/PesquisaSatisfacao/blob/master/PesquisaSatisfacao/Content/img/Screenshot_5.png"/>
