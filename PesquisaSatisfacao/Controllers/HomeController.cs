@@ -22,18 +22,21 @@ namespace PesquisaSatisfacao.Controllers
         {
             ViewData["usuario"] = this.Usuario.Name;
             ViewData["data"] = DateTime.Now;
-
             var duplicacao = PesquisaModel.EncontrarPesquisaDuplicada(this.Usuario.Name);
             var datamodal = PesquisaModel.PesquisarDataModal(this.Usuario.Name);
-
+            PesquisaModel.AtualizarRepeticoes(this.Usuario.Name);
+            var repeticoes = int.Parse(PesquisaModel.EncontrarRepeticoes(this.Usuario.Name));
             if (!duplicacao)
             {
                 var dataPesquisa = Convert.ToDateTime(datamodal);
-                if (DateTime.Now.DayOfYear >= dataPesquisa.DayOfYear && DateTime.Now.TimeOfDay >= dataPesquisa.TimeOfDay)
+                if (DateTime.Now.DayOfYear < dataPesquisa.DayOfYear || (DateTime.Now.DayOfYear == dataPesquisa.DayOfYear && DateTime.Now.TimeOfDay.Hours < dataPesquisa.TimeOfDay.Hours) || repeticoes > 3)
+                {
+                    return new EmptyResult();
+                }
+                else
                 {
                     PesquisaModel.AtualizarDataModal(this.Usuario.Name, DateTime.Now.AddDays(1));
-                    return PartialView("_PV_PesquisaSatisfacao", ViewData);
-
+                    return this.PartialView("_PV_PesquisaSatisfacao");
                 }
             }
             return new EmptyResult();
